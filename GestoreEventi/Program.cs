@@ -24,18 +24,24 @@ try
     for (int i = 0; i < nEventi; i++)
     {
         //CHIEDO ALL'UTENTE I PARAMETRI
-        Console.Write("\n\nInserisci il nome dell'evento! : ");
-        titolo = Console.ReadLine();
-        Console.Write("Inserisci la data! In formato (dd/mm/yyyy) :");
-        data = DateTime.Parse(Console.ReadLine());
-
-        Console.Write("Inserisci la capienza Massima : ");
-        capienzaMax = int.Parse(Console.ReadLine());
         try
         {
+            Console.Write("\n\nInserisci il nome dell'evento! : ");
+            titolo = Console.ReadLine();
+            Console.Write("Inserisci la data! In formato (dd/mm/yyyy) :");
+            data = DateTime.Parse(Console.ReadLine());
+
+            Console.Write("Inserisci la capienza Massima : ");
+            capienzaMax = int.Parse(Console.ReadLine());
+       
             //ISTANZIO UN NUOVO OGGETTO CON I PARAMETRI RICEVUTI
             evento = new Evento(titolo, data, capienzaMax);
             programmaEventi.AddEvento(evento);
+        }
+        catch (InvalidDataException ex) 
+        {
+            Console.WriteLine(ex.Message);
+            i--;
         }
         catch (Exception ex) 
         {
@@ -48,7 +54,7 @@ try
 
     //CHIEDIAMO SE VOGLIAMO INSERIRE ANCHE DELLE CONFERENZE
 
-    Console.WriteLine("Quante conferenze vuoi inserire nel programma?");
+    Console.WriteLine("\n\nQuante conferenze vuoi inserire nel programma?");
     nEventi = int.Parse(Console.ReadLine());
 
     for (int i = 0; i < nEventi; i++)

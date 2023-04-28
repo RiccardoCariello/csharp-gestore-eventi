@@ -22,7 +22,7 @@ namespace GestoreEventi
             get { return titolo; }
             set
             {
-                if (value == "")
+                if ((value == "") || (value is not string))
                 { throw new Exception("\n\nil titolo non può essere vuoto"); }
                 else { titolo = value; }
 
@@ -31,7 +31,10 @@ namespace GestoreEventi
 
         public DateTime Data
         {   get { return data; } 
-            set { if (value < DateTime.Now) { throw new InvalidDataException("\n\nLa data dell'evento non può essere precedente alla data attuale"); }
+            set { if (value < DateTime.Now) { 
+                    throw new InvalidDataException("\n\nLa data dell'evento non può essere precedente alla data attuale");
+
+                }
                 else { data = value; }
             } 
         } 
@@ -44,7 +47,7 @@ namespace GestoreEventi
 
         public  int PostiPrenotati
         {
-            get { return postiPrenotati;}            
+            get { return postiPrenotati;} 
         }
 
         public int PostiDisponibili

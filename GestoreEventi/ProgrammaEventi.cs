@@ -18,7 +18,13 @@ namespace GestoreEventi
         public string Titolo
         {
             get { return titolo; }
-            set { titolo = value; }
+            set
+            {
+                if ((value == "") || (value is not string))
+                { throw new Exception("\n\nil titolo non può essere vuoto"); }
+                else { titolo = value; }
+
+            }
         }
 
 
@@ -26,7 +32,7 @@ namespace GestoreEventi
 
         public ProgrammaEventi(string titolo)
         {
-            this.titolo = titolo;
+            this.Titolo = titolo;
             eventi = new List<Evento>();
         }
 

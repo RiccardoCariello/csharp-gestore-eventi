@@ -14,7 +14,13 @@ namespace GestoreEventi
         public string Relatore
         {
             get { return relatore; }
-            set { relatore = value; }
+            set
+            {
+                if ((value == "") || (value is not string))
+                { throw new Exception("\n\nil nome del relatore non può essere vuoto"); }
+                else { relatore = value; }
+
+            }
         }
 
         public double Prezzo
