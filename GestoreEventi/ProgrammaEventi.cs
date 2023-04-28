@@ -48,7 +48,7 @@ namespace GestoreEventi
         //restituisce tutti gli eventi in una certa data
         public List<Evento> EventiInADate(DateTime data)
         {
-            if (data is DateTime) 
+            if ((data is DateTime) && (data > DateTime.Now))  
             {
                 string stringa = string.Empty;
                 List<Evento> eventiInData = new List<Evento>();
@@ -67,7 +67,7 @@ namespace GestoreEventi
             }
             else
             {
-                throw new Exception("Mi serve una data");
+                throw new Exception("Mi serve una data valida");
             }
         }
 
@@ -90,8 +90,22 @@ namespace GestoreEventi
 
 
         //svuota tutto
-        public void DeleteElements() { eventi.Clear(); }
+        public void Clean() { eventi.Clear(); }
 
+        public void RemoveElement(string nome)
+        {
+            bool flag = false;
+            foreach (Evento evento in eventi)
+            {
+                if (evento.Titolo == nome)
+                {
+                    flag = true;
+                    eventi.RemoveAt(eventi.IndexOf(evento));
+                }
+                
+            }
+            if (flag == false) { Console.WriteLine("nessun evento con questo nome"); }
+        }
 
         //metodo che restituisce il titolo del programma con i titoli e la data di ogni evento
         public string PrintEvents()

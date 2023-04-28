@@ -41,7 +41,7 @@ namespace GestoreEventi
         public override string ToString()
         {
             string stringa;
-            stringa = base.ToString() + "- Relatore : " + Relatore + " - " + Prezzo.ToString("0.00");
+            stringa = base.ToString() + "- Relatore : " + Relatore + " - Prezzo : " + Prezzo.ToString("0.00");
             return stringa;
         }
 

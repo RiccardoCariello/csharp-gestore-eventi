@@ -85,11 +85,11 @@ try
 
     }
 
+    //###################################################################################################################
 
+    //###################################################################################################################
 
-
-
-
+    /*
     Console.Write("\n\nNumero di eventi : " + programmaEventi.NumeroEventi());
 
     Console.WriteLine("\n\nLista degli eventi : ");
@@ -109,35 +109,52 @@ try
             i--;
         }
     }
-
+    */
     /*
     Console.WriteLine("Meglio cancellare tutto ora.");
     programmaEventi.DeleteElements();
     Console.WriteLine(programmaEventi.PrintEvents() );
     */
-
-
-
-
-
-
-
     //STAMPO LE INFO DELL'EVENTO
     //Console.WriteLine(evento.ToString());
 
     /*   MILESTONE3
     ChiediSeVuoiPrenotare();
-
     RecapInfo();
-
-
     ChiediSeVuoiDisdire();
-
     RecapInfo();
     */
 
 
+    while (true)
+    { int i;
+        Console.WriteLine("ora decidi cosa fare.");
+        Console.WriteLine("Legenda :\n1 - Mostra tutti gli eventi.\n2 - Cerca un evento tramite la data.\n3 - Elimina gli eventi\n4 - Elimina un evento\n5 - Esci ");
+        inputUtente = Console.ReadLine();
+        i= int.Parse(inputUtente);
+        switch(i)
+        {
+            case 1:
+                programmaEventi.PrintEvents();
 
+                break;
+                
+            case 2:
+                CercaPerData();
+                break;
+
+            case 3:
+                Console.WriteLine("Meglio cancellare tutto ora.");
+                programmaEventi.Clean();
+                break;
+
+            case 4:
+                EliminaPerNome();
+
+                break;               
+        }
+        if (i == 5) { break; }
+    }
 
 
 
@@ -161,32 +178,6 @@ try
             $"I posti prenotati sono : {evento.PostiPrenotati}");
     }
 
-    /*
-    void InputEvent(int numeroEventi)
-    {
-        for (int i = 0; i < numeroEventi; i++)
-        {
-            try
-            {
-                //CHIEDO ALL'UTENTE I PARAMETRI
-                Console.WriteLine("Inserisci il nome dell'evento!");
-                string titolo = Console.ReadLine();
-                Console.WriteLine("Inserisci la data! In formato (dd/mm/yyyy");
-                DateTime data = DateTime.Parse(Console.ReadLine());
-
-                Console.WriteLine("Inserisci la capienza Massima");
-                int capienzaMax = int.Parse(Console.ReadLine());
-                //ISTANZIO UN NUOVO OGGETTO CON I PARAMETRI RICEVUTI
-                Evento evento = new Evento(titolo, data, capienzaMax);
-            }
-            catch (Exception e) 
-            {
-                Console.WriteLine(e.Message);
-                i--;
-            }
-        }
-    }
-    */
 
     void ChiediSeVuoiDisdire()
     {
@@ -223,6 +214,42 @@ try
         }
         else { Console.WriteLine("Va bene!"); }
     }
+    void CercaPerData()
+    {
+        for (int i = 0; i < 1; i++)
+        {
+            try
+            {
+                Console.Write("\n\nInserisci una data e ti dirò quanti eventi ci sono quel giorno ( formato dd/mm/yyyy) :");
+                data = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine(ProgrammaEventi.EventInList(programmaEventi.EventiInADate(data)));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                i--;
+            }
+        }
+    }
+
+    void EliminaPerNome()
+    {
+        for (int i = 0; i < 1; i++)
+        {
+            try
+            {
+                Console.Write("\n\nInserisci il nome dell'evento che vuoi eliminare");
+                inputUtente = Console.ReadLine();
+                programmaEventi.RemoveElement(inputUtente);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                i--;
+            }
+        }
+    }
+
 }
 catch(Exception ex)
 {
@@ -233,3 +260,30 @@ catch(Exception ex)
 
 
 
+
+/*
+void InputEvent(int numeroEventi)
+{
+    for (int i = 0; i < numeroEventi; i++)
+    {
+        try
+        {
+            //CHIEDO ALL'UTENTE I PARAMETRI
+            Console.WriteLine("Inserisci il nome dell'evento!");
+            string titolo = Console.ReadLine();
+            Console.WriteLine("Inserisci la data! In formato (dd/mm/yyyy");
+            DateTime data = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine("Inserisci la capienza Massima");
+            int capienzaMax = int.Parse(Console.ReadLine());
+            //ISTANZIO UN NUOVO OGGETTO CON I PARAMETRI RICEVUTI
+            Evento evento = new Evento(titolo, data, capienzaMax);
+        }
+        catch (Exception e) 
+        {
+            Console.WriteLine(e.Message);
+            i--;
+        }
+    }
+}
+*/
