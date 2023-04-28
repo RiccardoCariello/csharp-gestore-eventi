@@ -19,6 +19,8 @@ try
     //CHIEDO SE VUOLE PRENOTARE DEI POSTI
     string inputUtente;
     
+
+    //Chiedo all'utente se vuole prenotare
     do
     {
         Console.WriteLine("\nVuoi Prenotare dei posti? S/N");
@@ -28,17 +30,31 @@ try
 
     if (inputUtente == "s")
     {
-
+        Console.WriteLine("Quanti posti vuoi prenotare?");
+            inputUtente = Console.ReadLine();
+        evento.PrenotaPosti(int.Parse(inputUtente));
     }
     else { Console.WriteLine("Va bene!"); }
 
+    RecapInfo();
 
 
 
 
+    void RecapInfo()
+    {
+        Console.WriteLine($"La capienza Max del teatro è : {evento.CapienzaMax}\n" +
+            $"I posti disponibili sono : {evento.PostiDisponibili}\n" +
+            $"I posti prenotati sono : {evento.PostiPrenotati}");
+    }
 
 }
 catch
 {
 
 }
+
+
+
+
+
