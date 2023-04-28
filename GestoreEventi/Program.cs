@@ -6,9 +6,13 @@ string titolo = string.Empty;
 int capienzaMax;
 string inputUtente;
 ProgrammaEventi programmaEventi;
+Conferenza conferenza;
 int nEventi;
 Evento evento;
 DateTime data;
+
+string relatore;
+double prezzo;
 try
 {
     Console.WriteLine("Come vuoi che si chiami il tuo programma di eventi?");
@@ -20,12 +24,12 @@ try
     for (int i = 0; i < nEventi; i++)
     {
         //CHIEDO ALL'UTENTE I PARAMETRI
-        Console.WriteLine("Inserisci il nome dell'evento!");
+        Console.Write("\n\nInserisci il nome dell'evento! : ");
         titolo = Console.ReadLine();
-        Console.WriteLine("Inserisci la data! In formato (dd/mm/yyyy");
+        Console.Write("Inserisci la data! In formato (dd/mm/yyyy) :");
         data = DateTime.Parse(Console.ReadLine());
 
-        Console.WriteLine("Inserisci la capienza Massima");
+        Console.Write("Inserisci la capienza Massima : ");
         capienzaMax = int.Parse(Console.ReadLine());
         try
         {
@@ -41,8 +45,45 @@ try
 
     }
 
-    
-    
+
+    //CHIEDIAMO SE VOGLIAMO INSERIRE ANCHE DELLE CONFERENZE
+
+    Console.WriteLine("Quante conferenze vuoi inserire nel programma?");
+    nEventi = int.Parse(Console.ReadLine());
+
+    for (int i = 0; i < nEventi; i++)
+    {
+        //CHIEDO ALL'UTENTE I PARAMETRI
+        Console.Write("\n\nInserisci il nome della conferenza! : ");
+        titolo = Console.ReadLine();
+        Console.Write("Inserisci la data! In formato (dd/mm/yyyy) :");
+        data = DateTime.Parse(Console.ReadLine());
+
+        Console.Write("Inserisci la capienza Massima : ");
+        capienzaMax = int.Parse(Console.ReadLine());
+        Console.Write("Inserisci il nome del relatore : ");
+        relatore = Console.ReadLine();
+        Console.Write("Inserisci il prezzo : ");
+        prezzo = double.Parse(Console.ReadLine());
+        try
+        {
+            //ISTANZIO UN NUOVO OGGETTO CON I PARAMETRI RICEVUTI
+            conferenza = new Conferenza(titolo, data, capienzaMax, relatore ,prezzo);
+            programmaEventi.AddEvento(conferenza);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            i--;
+        }
+
+    }
+
+
+
+
+
+
     Console.Write("\n\nNumero di eventi : " + programmaEventi.NumeroEventi());
 
     Console.WriteLine("\n\nLista degli eventi : ");
@@ -52,7 +93,7 @@ try
     {
         try
         {
-            Console.WriteLine("\n\nInserisci una data e ti dirò quanti eventi ci sono quel giorno ( formato dd/mm/yyyy)");
+            Console.Write("\n\nInserisci una data e ti dirò quanti eventi ci sono quel giorno ( formato dd/mm/yyyy) :");
             data = DateTime.Parse(Console.ReadLine());
             Console.WriteLine(ProgrammaEventi.EventInList(programmaEventi.EventiInADate(data)));
         }
@@ -63,9 +104,12 @@ try
         }
     }
 
+    /*
     Console.WriteLine("Meglio cancellare tutto ora.");
     programmaEventi.DeleteElements();
     Console.WriteLine(programmaEventi.PrintEvents() );
+    */
+
 
 
 

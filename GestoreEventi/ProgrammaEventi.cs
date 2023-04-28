@@ -92,7 +92,7 @@ namespace GestoreEventi
         {
             string stringa = "";
 
-            stringa = $"Nome della programmazione degli eventi : {Titolo}\n";
+            //stringa = $"Nome della programmazione degli eventi : {Titolo}\n";
             foreach(Evento evento in eventi)
             {
                 stringa += evento.Data.ToShortDateString() + " - " + evento.Titolo + "\n";
