@@ -42,6 +42,24 @@ try
 
     RecapInfo();
 
+    
+    //chiedo se l'utente vuole disdire
+    do
+    {
+        Console.WriteLine("\nVuoi Disdire dei posti? S/N");
+        inputUtente = (Console.ReadLine());
+        inputUtente = inputUtente.ToLower();
+    } while (inputUtente != "s" && inputUtente != "n");
+
+    if (inputUtente == "s")
+    {
+        Console.WriteLine("Quanti posti vuoi disdire?");
+        inputUtente = Console.ReadLine();
+        evento.DisdiciPosti(int.Parse(inputUtente));
+    }
+    else { Console.WriteLine("Va bene!"); }
+
+    RecapInfo();
 
 
 

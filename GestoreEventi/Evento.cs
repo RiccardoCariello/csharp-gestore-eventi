@@ -23,7 +23,7 @@ namespace GestoreEventi
             set
             {
                 if (value == "")
-                { throw new Exception("il titolo non può essere vuoto"); }
+                { throw new Exception("\n\nil titolo non può essere vuoto"); }
                 else { titolo = value; }
 
             }
@@ -31,7 +31,7 @@ namespace GestoreEventi
 
         public DateTime Data
         {   get { return data; } 
-            set { if (value < DateTime.Now) { throw new InvalidDataException("La data dell'evento non può essere precedente alla data attuale"); }
+            set { if (value < DateTime.Now) { throw new InvalidDataException("\n\nLa data dell'evento non può essere precedente alla data attuale"); }
                 else { data = value; }
             } 
         } 
@@ -57,7 +57,7 @@ namespace GestoreEventi
 
         public Evento(string titolo , DateTime data , int postiMax)
         {
-            if(postiMax < 0) { throw new Exception("i posti non possono essere meno di 0"); }
+            if(postiMax < 0) { throw new Exception("\n\ni posti non possono essere meno di 0"); }
             else { this.capienzaMax = postiMax; }
 
             this.Data = data;
@@ -70,8 +70,8 @@ namespace GestoreEventi
 
         public void PrenotaPosti(int postiDaPrenotare)
         {
-            if (postiDaPrenotare < 1) { throw new Exception("non puoi prenotare meno di 1 posto"); }
-            else if(postiDaPrenotare > postiDisponibili) { throw new Exception("Posti esauriti");}
+            if (postiDaPrenotare < 1) { throw new Exception("\n\nnon puoi prenotare meno di 1 posto"); }
+            else if(postiDaPrenotare > postiDisponibili) { throw new Exception("\n\nPosti esauriti");}
             else 
             { 
                 postiDisponibili = postiDisponibili - postiDaPrenotare;
@@ -82,8 +82,8 @@ namespace GestoreEventi
 
         public void DisdiciPosti(int postiDaDisdire)
         {
-            if (postiDaDisdire < 1) { throw new Exception("non puoi disdire meno di 1 posto"); }
-            else if (postiDaDisdire > postiPrenotati) { throw new Exception("Impossibile disdire più posti di quanti ce ne sono prenotati"); }
+            if (postiDaDisdire < 1) { throw new Exception("\n\nnon puoi disdire meno di 1 posto"); }
+            else if (postiDaDisdire > postiPrenotati) { throw new Exception("\n\nImpossibile disdire più posti di quanti ce ne sono prenotati"); }
             else
             {
                 postiDisponibili = postiDisponibili + postiDaDisdire;
