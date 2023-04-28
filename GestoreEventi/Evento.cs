@@ -96,7 +96,7 @@ namespace GestoreEventi
         {
             string stringa;
             //Data.ToString("dd/MM/yyyy");
-            stringa = $"\n\nData : \t {Data.ToShortDateString()}\nTitolo : \t {Titolo}";
+            stringa = $"\n\nData : \t {Data.ToShortDateString()}\nTitolo : \t {Titolo}\n\n";
 
             return stringa;
         }
