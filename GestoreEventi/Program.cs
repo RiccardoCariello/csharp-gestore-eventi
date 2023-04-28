@@ -10,6 +10,7 @@ try
     string titolo = Console.ReadLine();
     Console.WriteLine("Inserisci la data! In formato (dd/mm/yyyy");
     DateTime data = DateTime.Parse(Console.ReadLine());
+
     Console.WriteLine("Inserisci la capienza Massima");
     int capienzaMax = int.Parse(Console.ReadLine());
 
@@ -19,6 +20,9 @@ try
     //CHIEDO SE VUOLE PRENOTARE DEI POSTI
     string inputUtente;
     
+    //STAMPO LE INFO DELL'EVENTO
+    Console.WriteLine(evento.ToString());
+
 
     //Chiedo all'utente se vuole prenotare
     do
@@ -49,9 +53,9 @@ try
     }
 
 }
-catch
+catch(Exception ex)
 {
-
+    Console.WriteLine(ex.Message);
 }
 
 
